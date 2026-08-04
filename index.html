@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link in Bio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="overlay-canvas"></canvas>
+    <div id="overlay-text">Click to continue</div>
+
+    <audio id="bg-music" src="song.mp3" preload="auto" crossorigin="anonymous" loop></audio>
+
+    <div class="container">
+        <div class="profile-card">
+            <div class="banner"></div>
+
+            <div class="avatar-container">
+                <div class="avatar" id="discord-avatar"></div>
+
+                <div class="spotify-indicator" id="spotify-indicator">
+                    <i class="fa-brands fa-spotify"></i>
+                </div>
+
+                <div class="spotify-tooltip" id="spotify-tooltip">
+                    <span class="spotify-title" id="spotify-track">Spotify</span>
+                    <span class="spotify-artist" id="spotify-artist">Загрузка...</span>
+                </div>
+            </div>
+
+            <div class="profile-info">
+                <h2 class="username" id="discord-name">Загрузка...</h2>
+                <p class="bio">
+                    Лучшие визуалы в тгшке <a href="https://rivalvisuals.t.me" target="_blank" class="bio-link">rivalvisuals.t.me</a>
+                </p>
+            </div>
+
+            <div class="social-links">
+                <a href="https://t.me/doxernet" class="social-icon" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://discord.com/users/1474075672526852158" class="social-icon" target="_blank"><i class="fa-brands fa-discord"></i></a>
+                <a href="https://funpay.com" class="social-icon" target="_blank"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+        </div>
+
+        <div class="player-widget">
+            <div class="player-left">
+                <div class="track-cover" id="track-cover"></div>
+                <div class="track-info">
+                    <span class="track-title">Уриил – парень все</span>
+                </div>
+            </div>
+
+            <div class="player-right">
+                <div class="progress-bar" id="progress-container">
+                    <div class="progress-line" id="progress-line"></div>
+                    <div class="progress-pin" id="progress-pin"></div>
+                </div>
+                <div class="player-controls" id="player-toggle">
+                    <i class="fa-solid fa-play"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
