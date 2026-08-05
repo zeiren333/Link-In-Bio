@@ -14,7 +14,7 @@
     --text-color: #ffffff;
     --overlay-bg: #000000;
     --card-bg: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.05));
-    --card-blur: blur(20px);
+    --card-blur: blur(0px);
     --card-border: 1px solid rgba(255,255,255,0.22);
     --bio-color: rgba(255,255,255,0.65);
     --link-color: #ffffff;
