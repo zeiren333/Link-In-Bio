@@ -16,6 +16,21 @@
     <div class="container">
         <div class="profile-card">
             <div class="banner"></div>
+            <div class="card-badges-container">
+                <div class="card-badge badge-views" id="badge-views">
+                    <i class="fa-solid fa-eye"></i>
+                    <span id="view-count-text">...</span>
+                    <span class="badge-tooltip">Просмотров карточки</span>
+                </div>
+                <div class="card-badge badge-verified">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span class="badge-tooltip">Подтвержденный профиль</span>
+                </div>
+                <div class="card-badge badge-vip">
+                    <i class="fa-solid fa-crown"></i>
+                    <span class="badge-tooltip">VIP Разработчик</span>
+                </div>
+            </div>
             <div class="avatar-container">
                 <div class="avatar" id="discord-avatar"></div>
                 <div class="spotify-indicator" id="spotify-indicator"><i class="fa-brands fa-spotify"></i></div>
@@ -38,5 +53,69 @@
         </div>
     </div>
     <script src="script.js"></script>
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import {
+        getFirestore,
+        doc,
+        getDoc,
+        setDoc,
+        updateDoc,
+        increment,
+        onSnapshot
+    } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAAMavidJBXQ3TU20i3Xmg1kjZkSVv_67U",
+        authDomain: "link-in-bio-app-5787b.firebaseapp.com",
+        projectId: "link-in-bio-app-5787b",
+        storageBucket: "link-in-bio-app-5787b.firebasestorage.app",
+        messagingSenderId: "1077685830887",
+        appId: "1:1077685830887:web:9d9f11193edcee784ace42"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    await signInAnonymously(auth);
+
+    const statsRef = doc(
+        db,
+        "artifacts",
+        "profile-card",
+        "public",
+        "data",
+        "analytics",
+        "cardViews"
+    );
+
+    const countEl = document.getElementById("view-count-text");
+
+    onSnapshot(statsRef, snap => {
+        if (snap.exists()) {
+            countEl.textContent = snap.data().count.toLocaleString();
+        } else {
+            countEl.textContent = "0";
+        }
+    });
+
+    if (!sessionStorage.getItem("visited_profile_card")) {
+        sessionStorage.setItem("visited_profile_card", "true");
+
+        const snap = await getDoc(statsRef);
+
+        if (snap.exists()) {
+            await updateDoc(statsRef, {
+                count: increment(1)
+            });
+        } else {
+            await setDoc(statsRef, {
+                count: 1
+            });
+        }
+    }
+    </script>
 </body>
 </html>
