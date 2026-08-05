@@ -29,3 +29,11 @@ body {font-family: var(--font-family); background: #000 var(--bg-main) center/co
 .social-icon:hover {transform: translateY(-2px); background: var(--icon-bg-hover); border-color: var(--icon-border-hover); box-shadow: var(--icon-shadow-hover);}
 @keyframes pulse {0%, 100% {transform: scale(1);} 50% {transform: scale(1.15);}}
 @media (max-width: 480px) {:root {--card-padding: 18px; --banner-height: 130px; --avatar-size: 80px; --social-icon-size: 44px;} .profile-card {grid-template-columns: 1fr; text-align: left;} .avatar-container {margin-top: calc(var(--avatar-size) / -2);} .profile-info {grid-column: 1; grid-row: 3;} .social-links {grid-column: 1; grid-row: 4;} .username {font-size: 22px;} .bio {font-size: 14px; white-space: normal;}}
+.card-badges-container {position:absolute;top:16px;right:16px;display:flex;gap:8px;z-index:20;}
+.card-badge {position:relative;width:34px;height:34px;border-radius:12px;display:flex;justify-content:center;align-items:center;background:rgba(15,15,15,.75);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.12);color:#fff;font-size:14px;transition:.25s;cursor:pointer;}
+.card-badge:hover {transform:translateY(-2px);background:rgba(35,35,35,.9);}
+.badge-verified {color:#4ea9ff;}
+.badge-vip {color:#ffcc42;}
+.badge-views {color:#fff;padding:0 10px;width:auto;gap:6px;}
+.badge-tooltip {position:absolute;top:calc(100% + 8px);right:0;opacity:0;visibility:hidden;white-space:nowrap;padding:6px 10px;border-radius:8px;background:rgba(0,0,0,.9);font-size:12px;transition:.2s;}
+.card-badge:hover .badge-tooltip {opacity:1;visibility:visible;}
